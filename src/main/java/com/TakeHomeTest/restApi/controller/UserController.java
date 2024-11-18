@@ -217,7 +217,7 @@ public class UserController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(example = "{ \"status\": 108" +
-                                    ", \"message\": \"Token tidak tidak valid atau kadaluwarsa\"" +
+                                    ", \"message\": \"Token tidak valid atau kadaluwarsa\"" +
                                     ", \"data\": null }")
                     )
             )
@@ -299,7 +299,7 @@ public class UserController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(example = "{ \"status\": 108" +
-                                    ", \"message\": \"Token tidak tidak valid atau kadaluwarsa\"" +
+                                    ", \"message\": \"Token tidak valid atau kadaluwarsa\"" +
                                     ", \"data\": null }")
                     )
             )
@@ -323,10 +323,113 @@ public class UserController {
     }
 
 
-
+    @Operation(
+            summary = "",
+            description = "**API Services Private (memerlukan Token untuk mengaksesnya)** \n\n" +
+                    "Digunakan untuk mendapatkan list Service/Layanan PPOB. \n\n" +
+                    "_Ketentuan_:\n" +
+                    "1. Buat data list Service/Layanan sesuai dokumentasi Response dibawah, usahakan data list Service atau Layanan ini tidak di hardcode" +
+                    ", melainkan ambil dari database.\n" +
+                    "2. Tidak perlu membuatkan module CRUD Service/Layanan.\n" +
+                    "3. Handling Response sesuai dokumentasi Response dibawah."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Request Successfully",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(example = "{\n" +
+                                    "  \"status\": 0,\n" +
+                                    "  \"message\": \"Sukses\",\n" +
+                                    "  \"data\": [\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"PAJAK\",\n" +
+                                    "      \"service_name\": \"Pajak PBB\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 40000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"PLN\",\n" +
+                                    "      \"service_name\": \"Listrik\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 10000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"PDAM\",\n" +
+                                    "      \"service_name\": \"PDAM Berlangganan\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 40000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"PULSA\",\n" +
+                                    "      \"service_name\": \"Pulsa\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 40000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"PGN\",\n" +
+                                    "      \"service_name\": \"PGN Berlangganan\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 50000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"MUSIK\",\n" +
+                                    "      \"service_name\": \"Musik Berlangganan\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 50000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"TV\",\n" +
+                                    "      \"service_name\": \"TV Berlangganan\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 50000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"PAKET_DATA\",\n" +
+                                    "      \"service_name\": \"Paket data\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 50000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"VOUCHER_GAME\",\n" +
+                                    "      \"service_name\": \"Voucher Game\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 100000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"VOUCHER_MAKANAN\",\n" +
+                                    "      \"service_name\": \"Voucher Makanan\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 100000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"QURBAN\",\n" +
+                                    "      \"service_name\": \"Qurban\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 200000\n" +
+                                    "    },\n" +
+                                    "    {\n" +
+                                    "      \"service_code\": \"ZAKAT\",\n" +
+                                    "      \"service_name\": \"Zakat\",\n" +
+                                    "      \"service_icon\": \"https://nutech-integrasi.app/dummy.jpg\",\n" +
+                                    "      \"service_tariff\": 300000\n" +
+                                    "    }\n" +
+                                    "  ]\n" +
+                                    "}")
+                    )
+            )
+            ,
+            @ApiResponse(responseCode = "401", description = "Unauthorized",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(example = "{ \"status\": 108" +
+                                    ", \"message\": \"Token tidak valid atau kadaluwarsa\"" +
+                                    ", \"data\": null }")
+                    )
+            )
+    })
     @GetMapping("/services")
     public ResponseEntity<GeneralResponse<Map<String, Object>>> services(
-            @RequestHeader("Authorization") String authorizationHeader) {
+            @Parameter(hidden = true) @RequestHeader("Authorization") String authorizationHeader) {
         try {
 
             jwtUtil.validateToken(authorizationHeader);
